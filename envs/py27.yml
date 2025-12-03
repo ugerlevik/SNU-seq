@@ -1,0 +1,63 @@
+name: py27
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - backports=1.0
+  - backports.functools_lru_cache=1.6.1
+  - backports_abc=0.5
+  - bzip2=1.0.8
+  - c-ares=1.11.0
+  - ca-certificates=2024.8.30
+  - certifi=2019.11.28
+  - curl=7.71.1
+  - cycler=0.10.0
+  - freetype=2.12.1
+  - functools32=3.2.3.2
+  - futures=3.3.0
+  - htseq=0.11.3
+  - kiwisolver=1.1.0
+  - krb5=1.17.2
+  - libblas=3.9.0
+  - libcblas=3.9.0
+  - libcurl=7.71.1
+  - libcxx=19.1.1
+  - libdeflate=1.0
+  - libedit=3.1.20191231
+  - libev=4.33
+  - libffi=3.2.1
+  - libgfortran=5.0.0
+  - libgfortran5=13.2.0
+  - liblapack=3.9.0
+  - libnghttp2=1.41.0
+  - libopenblas=0.3.27
+  - libpng=1.6.43
+  - libsqlite=3.46.0
+  - libssh2=1.10.0
+  - libzlib=1.2.13
+  - llvm-openmp=19.1.0
+  - matplotlib=2.2.5
+  - matplotlib-base=2.2.5
+  - ncurses=6.5
+  - numpy=1.16.5
+  - openssl=1.1.1w
+  - pip=20.1.1
+  - pyparsing=2.4.7
+  - pysam=0.15.3
+  - python=2.7.15
+  - python-dateutil=2.8.1
+  - python_abi=2.7
+  - pytz=2020.1
+  - readline=8.2
+  - setuptools=44.0.0
+  - singledispatch=3.6.1
+  - six=1.16.0
+  - sqlite=3.46.0
+  - subprocess32=3.5.4
+  - tk=8.6.13
+  - tornado=5.1.1
+  - wheel=0.37.1
+  - xz=5.2.6
+  - zlib=1.2.13
+
+prefix: "/Users/bioc1735/miniforge3/envs/py27"

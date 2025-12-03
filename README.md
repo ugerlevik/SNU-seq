@@ -6,64 +6,94 @@
 
 ## Scripts in order
 
-__1. "HEK293/1_genome_and_annotations"__
+__1. "scripts/HEK293/1_genome_and_annotations"__
   - Build [STAR](https://github.com/alexdobin/STAR) genome with [hg38](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000001405.40/) for mapping
   - Find genomic-A stretches and merge with [ENCODE blacklist](https://github.com/Boyle-Lab/Blacklist)
   - Prepare [GENCODE v46](https://www.gencodegenes.org/human/release_46.html) annotations for metagenes and counting transcription start site (TSS), gene body, gene end and readthrough regions
   - Prepare [housekeeping genes from RSeQC](https://sourceforge.net/projects/rseqc/files/BED/Human_Homo_sapiens/hg38.HouseKeepingGenes.bed.gz/download) for counting in quality control steps
 
-__2. "HEK293/2_preprocessing_and_qualityControl"__
+__2. "scripts/HEK293/2_preprocessing_and_qualityControl"__
   - Read quality control via [FASTQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
   - Adapter and quality trimming using [bbduk.sh](https://github.com/BioInfoTools/BBMap/blob/master/sh/bbduk.sh)
   - Map the reads to the built STAR genome
   - Report quality control via [MultiQC](https://github.com/MultiQC/MultiQC)
   - Principal component analysis via [deepTools](https://github.com/deeptools/deepTools/)
 
-__3. "HEK293/3_filtering_normalisation_and_merging"__
+__3. "scripts/HEK293/3_filtering_normalisation_and_merging"__
   - Filter blacklist, genomic A stretches and top/bottom 0.5% signal as "outliers" skewing the data using [bedtools](https://github.com/arq5x/bedtools2) and awk
   - Count the spike-in reads via [featureCounts](https://doi.org/10.1093/bioinformatics/btt656)
   - Estimate size factors from spike-ins using [DESeq2](https://doi.org/10.1186/s13059-014-0550-8)
   - Merge replicates of the same libraries to enhance the signal via bedtools and awk
 
-__4. "HEK293/4_subtacting_noPAP_from_bPAP"__
+__4. "scripts/HEK293/4_subtacting_noPAP_from_bPAP"__
   - Count the reads at the 3' end region to normalise between +bPAP and no bPAP libraries using bedtools since they have different library complexity with an expectation of a fairly similar profile of polyadenylated transcripts at the 3' end
   - Estimate size factors from 3' end regions using DESeq2 and apply them via bedtools and awk
   - Subtract no bPAP from +bPAP at single nucleotide resolution using deepTools
   - Remove negatives emerged because of the unmatched regions between +bPAP and no bPAP, and quantify them using awk, [ggplot2](https://github.com/tidyverse/ggplot2) and [ggpubr](https://github.com/kassambara/ggpubr)
   - Generate bedgraphs to view on [Integrative Genomics Viewer (IGV)](https://igv.org) with negative values for the reverse strand using awk
 
-__5. "HEK293/5_metagene_analysis"__
+__5. "scripts/HEK293/5_metagene_analysis"__
   - Compute and plot metagenes using deepTools
 
-__6. "HEK293/6_spliceJunction_analysis"__
+__6. "scripts/HEK293/6_spliceJunction_analysis"__
   - Calculate splicing efficiency using [SPLICE-q](https://github.com/vrmelo/SPLICE-q)
   - Calculate mean splicing efficiency per sample and visualise the distributions using ggplot2 and ggpubr
 
-__7. "HEK293/7_synthesis_decay_pausing_rate_analysis"__
+__7. "scripts/HEK293/7_synthesis_decay_pausing_rate_analysis"__
   - Count the reads at TSS, gene body, gene end and readthrough regions using bedtools map by summing the signal in the processed bedgraph files
   - Prepare a counts table involving all region counts and all samples and normalise the summed signal dividing by the width of the regions
   - Calculate synthesis & decay rates, pausing index and termination efficiency. k-means clustering the genes based on the synthesis rate and visualise them using ggpubr
 
-__8. "HEK293/8_TSS_enrichment_in_bPAP_over_noPAP"__
+__8. "scripts/HEK293/8_TSS_enrichment_in_bPAP_over_noPAP"__
   - Calculate the median fold change of the signal in +bPAP over no bPAP at the TSS region
 
-__9. "HEK293/9_comparison_with_TTseq_PROseq_NETseq"__
+__9. "scripts/HEK293/9_comparison_with_TTseq_PROseq_NETseq"__
   - Put [Phil's TT-Seq GSM5452296](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM5452296) and publicly available [TT-Seq GSM4730176](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM4730176), [PRO-Seq GSM4730174](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM4730174) and [mNET-Seq GSM7990390](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM7990390) data in HEK293 cells to the same scale
   - Compute and plot metagenes of SNU-Seq, TT-Seq, PRO-Seq and mNET-Seq using deepTools
   - Generate negative reverse strand bedgraph to visualise Phil's TT-Seq data on IGV
 
-__10. "HEP3B/1_prepare_ATACseqPeaks_and_FANTOM5_forMetagenes"__
+__10. "scripts/HEP3B/1_prepare_ATACseqPeaks_and_FANTOM5_forMetagenes"__
   - Prepare [Anna's ATAC-Seq GSE172053](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE172053) peaks and [FANTOM5](https://fantom.gsc.riken.jp/5/) enhancers data in a similar way to the genome annotation preparation in HEK293 cells to get clean/non-intersecting regions for a reliable metagene representation
 
-__11. "HEP3B/2_prepare_SNUseq_ChIPseq_data"__
+__11. "scripts/HEP3B/2_prepare_SNUseq_ChIPseq_data"__
   - Prepare [Anna's SNU-Seq and ChIP-Seq of H3K27ac and H3K4me3 data from GSE172053](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE172053) by file type conversions, concatenation and log2 transformation
   - Calculate H3K27ac to H3K4me3 ratio using deepTools and summarise the resulting ratios
 
-__12. "HEP3B/3_signal_presence_in_ATACpeak_and_FANTOM5_regions"__
+__12. "scripts/HEP3B/3_signal_presence_in_ATACpeak_and_FANTOM5_regions"__
   - Determine the SNU-seq, H3K27ac and H3K4me3 signal and quantify the distribution of them on the ATAC-Seq peaks and FANTOM5 regions
 
-__13. "HEP3B/4_metagene_analysis"__
+__13. "scripts/HEP3B/4_metagene_analysis"__
   - Sort the ATAC-Seq peaks and FANTOM5 annotations accordingly, and compute and plot metagenes using deepTools
+
+### All environments including the versions of the used tools and packages are available under the [environments](https://github.com/ugerlevik/SNU-seq/tree/main/envs) folder.
+
+## 🛠 Dependencies & Environments
+
+This pipeline utilizes multiple Conda environments to manage dependencies for different stages of the analysis. All environment configuration files are located in the `envs/` directory.
+
+### Environment List
+
+| Analysis Stage | Environment File | Key Tools |
+| :--- | :--- | :--- |
+| **DeepTools / Heatmaps** | [`envs/deeptools_env.yml`](envs/deeptools_env.yml) | DeepTools, Python 3.x |
+| **QC & Aggregation** | [`envs/multiqc_env.yml`](envs/multiqc_env.yml) | MultiQC, FastQC |
+| **Legacy Analysis** | [`envs/py27.yml`](envs/py27.yml) | Python 2.7 legacy scripts |
+| **Splicing Analysis** | [`envs/spliceQ_env.yml`](envs/spliceQ_env.yml) | SpliceQ |
+
+### Installation
+
+To replicate a specific environment, use the following command structure:
+
+```bash
+# Example: Creating the DeepTools environment
+mamba env create -f envs/deeptools_env.yml
+
+# Activate the environment
+mamba activate deeptools_env
+```
+
+### R Dependencies
+R packages are included within the respective conda YAML files where possible. For specific session information regarding R versions used in custom scripts, please refer to `envs/session_info.txt`.
 
 ## References
 1. [manschmi/MexNab_3seq](https://github.com/manschmi/MexNab_3seq)

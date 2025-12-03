@@ -1,0 +1,25 @@
+name: multiqc_env
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - ca-certificates=2024.7.4
+  - libcxx=18.1.8
+  - libffi=3.2.1
+  - libsqlite=3.46.0
+  - libzlib=1.2.13
+  - ncurses=6.5
+  - openssl=1.1.1w
+  - pip=24.2
+  - python=3.8.6
+  - readline=8.2
+  - setuptools=72.1.0
+  - sqlite=3.46.0
+  - tk=8.6.13
+  - wheel=0.44.0
+  - xz=5.2.6
+  - zlib=1.2.13
+  - pip:
+    - multiqc==1.23
+
+prefix: "/Users/bioc1735/miniforge3/envs/multiqc_env"
