@@ -66,7 +66,7 @@ __13. "scripts/HEP3B/4_metagene_analysis"__
   - Sort the ATAC-Seq peaks and FANTOM5 annotations accordingly, and compute and plot metagenes using deepTools
 
 
-## 🛠 Dependencies & Environments
+## Dependencies & Environments
 
 This pipeline utilizes multiple Conda environments to manage dependencies for different stages of the analysis. All environment configuration files are located in the [`envs/`](https://github.com/ugerlevik/SNU-seq/tree/main/envs) directory.
 
@@ -74,10 +74,10 @@ This pipeline utilizes multiple Conda environments to manage dependencies for di
 
 | Analysis Stage | Environment File | Key Tools |
 | :--- | :--- | :--- |
-| **DeepTools / Heatmaps** | [`envs/deeptools_env.yml`](envs/deeptools_env.yml) | DeepTools, Python 3.x |
-| **QC & Aggregation** | [`envs/multiqc_env.yml`](envs/multiqc_env.yml) | MultiQC, FastQC |
-| **Legacy Analysis** | [`envs/py27.yml`](envs/py27.yml) | Python 2.7 legacy scripts |
-| **Splicing Analysis** | [`envs/spliceQ_env.yml`](envs/spliceQ_env.yml) | SpliceQ |
+| **DeepTools** | [`envs/deeptools_env.yml`](envs/deeptools_env.yml) | DeepTools, Python 3.8 |
+| **QC aggregation** | [`envs/multiqc_env.yml`](envs/multiqc_env.yml) | MultiQC |
+| **Genomic-A flagging** | [`envs/py27.yml`](envs/py27.yml) | Python 2.7 scripts |
+| **Splicing analysis** | [`envs/spliceQ_env.yml`](envs/spliceQ_env.yml) | SPLICE-q |
 
 ### Installation
 
@@ -92,7 +92,7 @@ mamba activate deeptools_env
 ```
 
 ### R Dependencies
-R packages are included within the respective conda YAML files where possible. For specific session information regarding R versions used in custom scripts, please refer to `envs/session_info.txt`.
+R packages are included within the respective conda YAML files where possible. For most of the R and package versions used in the scripts, please refer to [`envs/R_versions.txt`](https://github.com/ugerlevik/SNU-seq/tree/main/envs/R_versions.txt).
 
 ## References
 1. [manschmi/MexNab_3seq](https://github.com/manschmi/MexNab_3seq)
