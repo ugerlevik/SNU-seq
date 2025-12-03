@@ -65,11 +65,10 @@ __12. "scripts/HEP3B/3_signal_presence_in_ATACpeak_and_FANTOM5_regions"__
 __13. "scripts/HEP3B/4_metagene_analysis"__
   - Sort the ATAC-Seq peaks and FANTOM5 annotations accordingly, and compute and plot metagenes using deepTools
 
-### All environments including the versions of the used tools and packages are available under the [environments](https://github.com/ugerlevik/SNU-seq/tree/main/envs) folder.
 
 ## 🛠 Dependencies & Environments
 
-This pipeline utilizes multiple Conda environments to manage dependencies for different stages of the analysis. All environment configuration files are located in the `envs/` directory.
+This pipeline utilizes multiple Conda environments to manage dependencies for different stages of the analysis. All environment configuration files are located in the [`envs/`](https://github.com/ugerlevik/SNU-seq/tree/main/envs) directory.
 
 ### Environment List
 
