@@ -2,7 +2,6 @@
 
 ## These scripts are used in the following studies:
 1. [Gerlevik, U., Lorenz, P., Lamstaes, A., Fischl, H., Xi, S., Saukko-Paavola, A., Murray, S., Brown, T., Welch, A., George, C., Angel, A., Furger, A., Mellor, J. (2025). "Single Nucleotide Resolution 4sU Sequencing (SNU-Seq) reveals the transcriptional responsiveness of an epigenetically primed human genome". *bioRxiv*.](https://www.biorxiv.org/content/10.1101/2021.07.14.452379v2.full)
-2. Gerlevik, U. (2025). "Understanding the Capabilities of SNU-Seq and Applying it to Investigate the Relationship between Transcription, Chromatin and Metabolism in mIDH Glioma Cells". *Ludwig Maximilian University of Munich*.
 
 ## Scripts in order
 
