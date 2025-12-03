@@ -1,7 +1,7 @@
 # SNU-Seq Data Processing and Analysis
 
-## These scripts are used in the following studies:
-1. [Gerlevik, U., Lorenz, P., Lamstaes, A., Fischl, H., Xi, S., Saukko-Paavola, A., Murray, S., Brown, T., Welch, A., George, C., Angel, A., Furger, A., Mellor, J. (2025). "Single Nucleotide Resolution 4sU Sequencing (SNU-Seq) reveals the transcriptional responsiveness of an epigenetically primed human genome". *bioRxiv*.](https://www.biorxiv.org/content/10.1101/2021.07.14.452379v2.full)
+## These scripts are used in the following study:
+[Gerlevik, U., Lorenz, P., Lamstaes, A., Fischl, H., Xi, S., Saukko-Paavola, A., Murray, S., Brown, T., Welch, A., George, C., Angel, A., Furger, A., Mellor, J. (2025). "Single Nucleotide Resolution 4sU Sequencing (SNU-Seq) reveals the transcriptional responsiveness of an epigenetically primed human genome". *bioRxiv*.](https://www.biorxiv.org/content/10.1101/2021.07.14.452379v2.full)
 
 ## Scripts in order
 
