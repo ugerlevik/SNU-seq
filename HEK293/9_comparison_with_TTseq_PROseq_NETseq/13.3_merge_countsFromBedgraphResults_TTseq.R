@@ -1,9 +1,8 @@
 ############################################################################
 ## Project: SNUseq project
-## Script purpose: Merge counts from 3' UTR regions (no need a further  
-##                normalization by region length as they counted in the same 
-##                regions and cancel out)
-## Date: Mar 11, 2025
+## Script purpose: Merge TT-seq counts from 3' UTR regions 
+##                (no need normalization by region length)
+## Date: Apr 4, 2025
 ## Author: Umut Gerlevik
 ############################################################################
 
@@ -12,8 +11,8 @@ library(tidyr)
 library(readr)
 
 # Set working directory to merged files
-merged_dir <- "/MellorLab/SNUseqProject/1_Umut/8.1_countsRegions_fromBedgraph/individualResults"
-output_dir <- "/MellorLab/SNUseqProject/1_Umut/8.1_countsRegions_fromBedgraph"
+merged_dir <- "/MellorLab/SNUseqProject/2_TTseq_Phil/1.3_countsRegions_fromBedgraph/individualResults"
+output_dir <- "/MellorLab/SNUseqProject/2_TTseq_Phil/1.3_countsRegions_fromBedgraph"
 
 # Get all merged txt files
 merged_files <- list.files(merged_dir, pattern = "_merged_.*\\.bedgraph$", full.names = TRUE)
@@ -61,7 +60,7 @@ final_merged_table <- Reduce(function(x, y) full_join(x, y, by = c("GeneID")), d
 conditions <- unique(gsub("_(finalAnnotationSubset|TSS|GeneBody|GeneEnd|Readthrough|filtered_3UTRs)", "", colnames(final_merged_table)[-1]))
 
 # Define feature order
-feature_order <- c("filtered_3UTRs")
+feature_order <- c("GeneBody")
 
 # Generate ordered column names
 ordered_columns <- c("GeneID", unlist(sapply(conditions, function(cond) {

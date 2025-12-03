@@ -2,7 +2,8 @@
 
 ############################################################################
 ## Project: SNUseq project
-## Script purpose: Comprehensive QC - Part 1
+## Script purpose: Comprehensive QC - Part 1 (adapted from nf-core/rnaseq 
+##                 pipeline and RSeqQC)
 ## Date: Sep 29, 2024
 ## Author: Umut Gerlevik
 ############################################################################
@@ -24,7 +25,7 @@ bed=$common_prefix/genome/1_rawGenomeFiles/gencode46spikes_seqidFixed.bed
 hkgenes=$common_prefix/genome/3_annotations/sources/hg38.HouseKeepingGenes.bed
 
 biotypes_header=$common_prefix/multiqcHeaders/biotypes_header.txt
-alias mqc_features_stat.py=$prefix/scripts/4.1.1_mqc_features_stat.py
+alias mqc_features_stat.py=$prefix/scripts/mqc_features_stat.py
 
 for file in ${bamFileList[@]}
 do

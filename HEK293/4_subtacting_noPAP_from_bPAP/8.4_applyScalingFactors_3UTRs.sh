@@ -2,7 +2,7 @@
 
 ############################################################################
 ## Project: SNUseq project
-## Script purpose: Apply DESeq2 scaling factors to BedGraph files
+## Script purpose: Apply DESeq2 size factors to the BedGraph files
 ## Date: Mar 11, 2025
 ## Author: Umut Gerlevik
 ############################################################################

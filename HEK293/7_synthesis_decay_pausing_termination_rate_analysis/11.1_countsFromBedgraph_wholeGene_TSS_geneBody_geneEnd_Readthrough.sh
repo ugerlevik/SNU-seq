@@ -2,13 +2,13 @@
 
 ############################################################################
 ## Project: SNUseq project
-## Script purpose: Count 3' UTRs in a stranded way, for scaling between bPAP
-##                and noPAP samples as they should have similar 3' UTR counts
-## Date: Mar 11, 2025
+## Script purpose: Count the signal in TSS, GeneBody, GeneEnd, Readthrough 
+##                regions separately, in a stranded manner from bedgraph files
+## Date: Mar 12, 2025
 ## Author: Umut Gerlevik
 ############################################################################
 
-# "sum" is used to count all bedgraph signal in the region
+# "sum" is used to sum all bedgraph signal -> later normalise to region length
 
 source ~/.zshrc
 mamba activate deeptools_env
@@ -17,19 +17,18 @@ mamba activate deeptools_env
 common_prefix="/MellorLab/SNUseqProject/0_commonFiles"
 prefix="/MellorLab/SNUseqProject"
 
-inputDir="$prefix/1_Umut/7.1_merged_bedgraph_strandSpecific"
-
+inputDir="$prefix/1_Umut/8.2_spikeNorm_3UTRnormalised_bedgraph"
 annotationDir="$common_prefix/annotations"
 sortedAnnoDir="$annotationDir/sorted"
 
-strandedOutputDir="$prefix/1_Umut/8.1_countsRegions_fromBedgraph/individualResults/strandsSeparated"
-mergedOutputDir="$prefix/1_Umut/8.1_countsRegions_fromBedgraph/individualResults"
+strandedOutputDir="$prefix/1_Umut/10.1_countsRegions_fromBedgraph/individualResults/strandsSeparated"
+mergedOutputDir="$prefix/1_Umut/10.1_countsRegions_fromBedgraph/individualResults"
 
 mkdir -p "$sortedAnnoDir"
 mkdir -p "$strandedOutputDir"
 
 # Define annotation feature types
-features=("filtered_3UTRs")
+features=("TSS" "GeneBody" "GeneEnd" "Readthrough" "finalAnnotationSubset")
 
 # Define conditions
 conditions=("labelled_bPAP" "labelled_bPAP_rRNA" "labelled_noPAP" "labelled_noPAP_rRNA" \
@@ -55,7 +54,7 @@ echo "[INFO] Annotation files sorted and stored in $sortedAnnoDir."
 
 # Loop through each bedGraph file
 for bedgraph_file in "$inputDir"/*.bedgraph; do
-    fileName=$(basename "$bedgraph_file" _merged.bedgraph)
+    fileName=$(basename "$bedgraph_file" _3UTRnormalised.bedgraph)
 
     # Detect strand based on filename pattern
     if echo "$fileName" | grep -q "_fwd"; then
@@ -89,7 +88,7 @@ for feature in "${features[@]}"; do
     for condition in "${conditions[@]}"; do
         fwd_file="$strandedOutputDir/${condition}_fwd_${feature}.bedgraph"
         rev_file="$strandedOutputDir/${condition}_rev_${feature}.bedgraph"
-        merged_file="$mergedOutputDir/${condition}_merged_${feature}.bedgraph"
+        merged_file="$mergedOutputDir/${condition}_3UTRnormalised_${feature}.bedgraph"
 
         if [[ -f "$fwd_file" && -f "$rev_file" ]]; then
             echo "[INFO] Merging $fwd_file and $rev_file into $merged_file"

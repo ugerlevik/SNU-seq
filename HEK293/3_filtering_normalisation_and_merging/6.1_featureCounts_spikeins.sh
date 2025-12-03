@@ -2,7 +2,7 @@
 
 ############################################################################
 ## Project: SNUseq project
-## Script purpose: featureCounts spikeins
+## Script purpose: featureCounts spike-ins for normalisation
 ## Date: Mar 5, 2025
 ## Author: Umut Gerlevik
 ############################################################################

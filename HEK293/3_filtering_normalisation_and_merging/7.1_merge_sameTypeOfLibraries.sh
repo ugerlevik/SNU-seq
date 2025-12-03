@@ -3,7 +3,7 @@
 ############################################################################
 ## Project: SNUseq project
 ## Script purpose: Merge same type of libraries by using 
-##                  spike-in normalized BedGraph files
+##                spike-in normalized BedGraph files
 ## Date: Mar 5, 2025
 ## Author: Umut Gerlevik
 ############################################################################

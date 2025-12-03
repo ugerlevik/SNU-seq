@@ -9,7 +9,7 @@
 
 : '
 # Mask reads primed at genomic A-stretches
-* adapted https://github.com/manschmi/MexNab_3seq of Schmid et al. (2018), who adapted from Roy et al. (2016).
+* adapted from https://github.com/manschmi/MexNab_3seq of Schmid et al. (2018), who adapted from Roy et al. (2016).
 
 Notes from https://github.com/manschmi/MexNab_3seq of Schmid et al. (2018), quoted as it is:
 

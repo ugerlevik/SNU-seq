@@ -2,7 +2,7 @@
 
 ############################################################################
 ## Project: SNUseq project
-## Script purpose: Rename fastq files
+## Script purpose: Rename fastq files for simplicity
 ## Date: Mar 4, 2025
 ## Author: Umut Gerlevik
 ############################################################################

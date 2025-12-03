@@ -1,6 +1,6 @@
 ############################################################################
 ## Project: SNUseq project
-## Script purpose: Calculate Scaling factors for 3'UTR normalisation (bPAP vs noPAP)
+## Script purpose: Calculate size factors for 3'UTR normalisation (bPAP vs noPAP)
 ## Date: Mar 11, 2025
 ## Author: Umut Gerlevik
 ############################################################################

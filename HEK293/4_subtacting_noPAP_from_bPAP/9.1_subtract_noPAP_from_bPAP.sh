@@ -1,15 +1,9 @@
 #!/bin/bash
-#SBATCH --job-name=subtractNoPAPfromBPAP
-#SBATCH --output=subtractNoPAPfromBPAP_%A_%a.out
-#SBATCH --error=subtractNoPAPfromBPAP_%A_%a.err
-#SBATCH --time=12:00:00
-#SBATCH --ntasks-per-node=48
-#SBATCH --nodes=1
-
 
 ############################################################################
 ## Project: SNUseq project
-## Script purpose: Subtract noPAP samples from bPAP samples
+## Script purpose: Subtract noPAP samples from bPAP samples 
+##                (at single nucleotide resolution)
 ## Date: Mar 11, 2025
 ## Author: Umut Gerlevik
 ############################################################################

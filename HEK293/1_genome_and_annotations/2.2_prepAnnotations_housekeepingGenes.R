@@ -1,6 +1,6 @@
 ############################################################################
 ## Project: SNUseq project
-## Script purpose: Prepare the genome annotations
+## Script purpose: Prepare the housekeeping genes annotations for metagene analysis (if needed)
 ## Date: Mar 13, 2025
 ## Author: Umut Gerlevik
 ############################################################################

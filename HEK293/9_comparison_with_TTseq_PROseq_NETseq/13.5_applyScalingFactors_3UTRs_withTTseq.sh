@@ -2,8 +2,8 @@
 
 ############################################################################
 ## Project: SNUseq project
-## Script purpose: Apply DESeq2 size factors to the BedGraph files
-## Date: Mar 5, 2025
+## Script purpose: Apply DESeq2 size factors to BedGraph files - TTseq
+## Date: Apr 4, 2025
 ## Author: Umut Gerlevik
 ############################################################################
 
@@ -15,12 +15,12 @@ common_prefix=/MellorLab/SNUseqProject/0_commonFiles
 prefix=/MellorLab/SNUseqProject
 
 # Directory paths
-input_bedgraph_folder=$prefix/1_Umut/5.5_filtered_bedgraph_strandSpecific
+input_bedgraph_folder=$prefix/2_TTseq_Phil/1.2_bedgraphs
 
-output_bedgraph_folder=$prefix/1_Umut/6.2_spikeinNormalised_bedgraph
-output_bigwig_folder=$prefix/1_Umut/6.3_spikeinNormalised_bigwig
-output_bedgraph_bothStrand_folder=$prefix/1_Umut/6.4_spikeinNormalised_bedgraph_bothStrand
-output_bigwig_bothStrand_folder=$prefix/1_Umut/6.5_spikeinNormalised_bigwig_bothStrand
+output_bedgraph_folder=$prefix/2_TTseq_Phil/1.4_genebodyNormalised_bedgraph
+output_bigwig_folder=$prefix/2_TTseq_Phil/1.5_genebodyNormalised_bigwig
+output_bedgraph_bothStrand_folder=$prefix/2_TTseq_Phil/1.6_genebodyNormalised_bedgraph_bothStrand
+output_bigwig_bothStrand_folder=$prefix/2_TTseq_Phil/1.7_genebodyNormalised_bigwig_bothStrand
 
 # Create output directories if they don't exist
 mkdir -p "$output_bedgraph_folder"
@@ -28,12 +28,12 @@ mkdir -p "$output_bigwig_folder"
 mkdir -p "$output_bedgraph_bothStrand_folder"
 mkdir -p "$output_bigwig_bothStrand_folder"
 
-scaling_factors_file=$prefix/1_Umut/6.1_featureCounts_spikeins/DESeq2_scalingFactors_spikeins.txt
+scaling_factors_file=$prefix/2_TTseq_Phil/1.3_countsRegions_fromBedgraph/DESeq2_scalingFactors_3UTRs.txt
 genome_file="$common_prefix/genome/2_STARgenome/chrNameLength.txt"
 
 # Loop through each BedGraph file and apply scaling factors
 for bedgraph_file in "$input_bedgraph_folder"/*.bedgraph; do
-    bedgraph_basename=$(basename "$bedgraph_file" _sorted.bedgraph)
+    bedgraph_basename=$(basename "$bedgraph_file" .bedgraph)
     
     # Extract the sample name (remove _fwd or _rev)
     sample_name=$(echo "$bedgraph_basename" | sed -E 's/_fwd$|_rev$//')
@@ -47,13 +47,15 @@ for bedgraph_file in "$input_bedgraph_folder"/*.bedgraph; do
     fi
 
     # Output normalized BedGraph and BigWig files
-    scaled_bedgraph_file="$output_bedgraph_folder/${bedgraph_basename}_spikeinNormalised.bedgraph"
-    scaled_bigwig_file="$output_bigwig_folder/${bedgraph_basename}_spikeinNormalised.bw"
+    scaled_bedgraph_file="$output_bedgraph_folder/${bedgraph_basename}_genebodyNormalised.bedgraph"
+    scaled_bigwig_file="$output_bigwig_folder/${bedgraph_basename}_genebodyNormalised.bw"
 
     echo "Processing $bedgraph_file with scaling factor $scaling_factor"
 
     # Apply the scaling factor to the BedGraph file
-    awk -v scale="$scaling_factor" 'BEGIN {OFS="\t"} {print $1, $2, $3, $4 / scale}' "$bedgraph_file" > "$scaled_bedgraph_file"
+    awk -v scale="$scaling_factor" 'BEGIN {OFS="\t"} 
+        $1 ~ /^chr([1-9]|1[0-9]|2[0-2])$/ && ($4) != 0 {print $1, $2, $3, $4/scale}' "$bedgraph_file" | \
+        LC_COLLATE=C sort -k1,1 -k2,2n > "$scaled_bedgraph_file"
 
     # Convert scaled BedGraph to BigWig
     bedGraphToBigWig "$scaled_bedgraph_file" "$genome_file" "$scaled_bigwig_file"
@@ -63,10 +65,10 @@ for bedgraph_file in "$input_bedgraph_folder"/*.bedgraph; do
 done
 
 # Step 2: Combine forward and reverse BedGraphs for bothStrand using bedtools unionbedg
-for bedgraph_file_fwd in "$output_bedgraph_folder"/*_fwd_spikeinNormalised.bedgraph; do
+for bedgraph_file_fwd in "$output_bedgraph_folder"/*_fwd_genebodyNormalised.bedgraph; do
     
-    base_name=$(basename "$bedgraph_file_fwd" "_fwd_spikeinNormalised.bedgraph")
-    bedgraph_file_rev="$output_bedgraph_folder/${base_name}_rev_spikeinNormalised.bedgraph"
+    base_name=$(basename "$bedgraph_file_fwd" "_fwd_genebodyNormalised.bedgraph")
+    bedgraph_file_rev="$output_bedgraph_folder/${base_name}_rev_genebodyNormalised.bedgraph"
     
     if [ ! -f "$bedgraph_file_rev" ]; then
         echo "Warning: No reverse strand file found for $base_name. Skipping."
@@ -74,8 +76,8 @@ for bedgraph_file_fwd in "$output_bedgraph_folder"/*_fwd_spikeinNormalised.bedgr
     fi
     
     # Output for merged BedGraph and BigWig
-    merged_bedgraph_file="$output_bedgraph_bothStrand_folder/${base_name}_bothStrand_spikeinNormalised.bedgraph"
-    merged_bigwig_file="$output_bigwig_bothStrand_folder/${base_name}_bothStrand_spikeinNormalised.bw"
+    merged_bedgraph_file="$output_bedgraph_bothStrand_folder/${base_name}_bothStrand_genebodyNormalised.bedgraph"
+    merged_bigwig_file="$output_bigwig_bothStrand_folder/${base_name}_bothStrand_genebodyNormalised.bw"
 
     echo "Merging forward and reverse BedGraph files for $base_name"
 
@@ -86,7 +88,7 @@ for bedgraph_file_fwd in "$output_bedgraph_folder"/*_fwd_spikeinNormalised.bedgr
     # Step 2.2: Sort the merged BedGraph file
     LC_COLLATE=C sort -k1,1 -k2,2n "$merged_bedgraph_file.tmp" > "$merged_bedgraph_file"
 
-    # Step 2.3: Convert to BigWig for bothStrand 1_Umut
+    # Step 2.3: Convert to BigWig for bothStrand 2_TTseq_Phil
     bedGraphToBigWig "$merged_bedgraph_file" "$genome_file" "$merged_bigwig_file"
     
     # Clean up intermediate files

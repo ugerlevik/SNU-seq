@@ -2,7 +2,7 @@
 
 ############################################################################
 ## Project: SNUseq project
-## Script purpose: Adapter, index and quality trimming
+## Script purpose: Adapter and quality trimming
 ## Date: Mar 4, 2025
 ## Author: Umut Gerlevik
 ############################################################################

@@ -2,7 +2,7 @@
 
 ############################################################################
 ## Project: SNUseq project
-## Script purpose: Plot correlations (raw)
+## Script purpose: Plot correlations (on raw data)
 ## Date: Mar 4, 2025
 ## Author: Umut Gerlevik
 ############################################################################

@@ -36,7 +36,7 @@ __5. "HEK293/5_metagene_analysis"__
   - Compute and plot metagenes using deepTools
 
 __6. "HEK293/6_spliceJunction_analysis"__
-  - Calculate splicing efficiency using [SPLICE-Q](https://github.com/vrmelo/SPLICE-q)
+  - Calculate splicing efficiency using [SPLICE-q](https://github.com/vrmelo/SPLICE-q)
   - Calculate mean splicing efficiency per sample and visualise the distributions using ggplot2 and ggpubr
 
 __7. "HEK293/7_synthesis_decay_pausing_rate_analysis"__

@@ -2,7 +2,7 @@
 
 ############################################################################
 ## Project: SNUseq project
-## Script purpose: Compute matrix for PCA (raw)
+## Script purpose: Compute matrix for PCA (on raw data)
 ## Date: Mar 4, 2025
 ## Author: Umut Gerlevik
 ############################################################################

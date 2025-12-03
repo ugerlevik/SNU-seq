@@ -1,6 +1,6 @@
 ############################################################################
 ## Project: SNUseq project
-## Script purpose: Calculate Scaling factors for spikein normalisation
+## Script purpose: Calculate size factors for spike-in normalisation
 ## Date: Mar 5, 2025
 ## Author: Umut Gerlevik
 ############################################################################

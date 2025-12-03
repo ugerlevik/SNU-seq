@@ -2,9 +2,8 @@
 
 ############################################################################
 ## Project: SNUseq project
-## Script purpose: Count 3' UTRs in a stranded way, for scaling between bPAP
-##                and noPAP samples as they should have similar 3' UTR counts
-## Date: Mar 11, 2025
+## Script purpose: Count 3' UTRs in a stranded manner from TT-seq bedgraphs
+## Date: Apr 4, 2025
 ## Author: Umut Gerlevik
 ############################################################################
 
@@ -17,24 +16,22 @@ mamba activate deeptools_env
 common_prefix="/MellorLab/SNUseqProject/0_commonFiles"
 prefix="/MellorLab/SNUseqProject"
 
-inputDir="$prefix/1_Umut/7.1_merged_bedgraph_strandSpecific"
+inputDir="$prefix/2_TTseq_Phil/1.2_bedgraphs"
 
 annotationDir="$common_prefix/annotations"
 sortedAnnoDir="$annotationDir/sorted"
 
-strandedOutputDir="$prefix/1_Umut/8.1_countsRegions_fromBedgraph/individualResults/strandsSeparated"
-mergedOutputDir="$prefix/1_Umut/8.1_countsRegions_fromBedgraph/individualResults"
+strandedOutputDir="$prefix/2_TTseq_Phil/1.3_countsRegions_fromBedgraph/individualResults/strandsSeparated"
+mergedOutputDir="$prefix/2_TTseq_Phil/1.3_countsRegions_fromBedgraph/individualResults"
 
 mkdir -p "$sortedAnnoDir"
 mkdir -p "$strandedOutputDir"
 
 # Define annotation feature types
-features=("filtered_3UTRs")
+features=("GeneBody")
 
 # Define conditions
-conditions=("labelled_bPAP" "labelled_bPAP_rRNA" "labelled_noPAP" "labelled_noPAP_rRNA" \
-            "total_bPAP" "total_bPAP_rRNA" "total_noPAP" "total_noPAP_rRNA" \
-            "unlabelled_bPAP" "unlabelled_noPAP")
+conditions=("labelled_bPAP" "TTseq_A" "TTseq_B")
 
 # Sort annotation files
 for strand in "fwd" "rev"; do
@@ -55,7 +52,7 @@ echo "[INFO] Annotation files sorted and stored in $sortedAnnoDir."
 
 # Loop through each bedGraph file
 for bedgraph_file in "$inputDir"/*.bedgraph; do
-    fileName=$(basename "$bedgraph_file" _merged.bedgraph)
+    fileName=$(basename "$bedgraph_file" .bedgraph)
 
     # Detect strand based on filename pattern
     if echo "$fileName" | grep -q "_fwd"; then
