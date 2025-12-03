@@ -97,4 +97,4 @@ R packages are included within the respective conda YAML files where possible. F
 1. [manschmi/MexNab_3seq](https://github.com/manschmi/MexNab_3seq)
 2. [manschmi/MS_Metagene_Tools](https://github.com/manschmi/MS_Metagene_Tools)
 3. [nf-core/rnaseq](https://github.com/nf-core/rnaseq)
-4. See the used R packages and other tools in the scripts.
+4. See the used R packages and other tools in the scripts and under the [`envs/`](https://github.com/ugerlevik/SNU-seq/tree/main/envs) directory.
