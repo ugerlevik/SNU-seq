@@ -83,10 +83,10 @@ This pipeline utilizes multiple Conda environments to manage dependencies for di
 To replicate a specific environment, use the following command structure:
 
 ```bash
-# Example: Creating the DeepTools environment (via mamba, could directly replace with conda)
+# Example: Creating the DeepTools environment (via mamba, it is directly replacable with "conda")
 mamba env create -f envs/deeptools_env.yml
 
-# Activate the environment (via mamba, could directly replace with conda)
+# Activate the environment (via mamba, it is directly replacable with "conda")
 mamba activate deeptools_env
 ```
 
