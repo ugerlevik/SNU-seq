@@ -3,7 +3,7 @@
 ############################################################################
 ## Project: SNUseq project
 ## Script purpose: Compute matrices for metagenes of SNU-seq (neg removed),
-##                 PRO-seq, TT-seq, mNET-seq in HEK293 cells
+##                 sf4sU-seq, PRO-seq, TT-seq, mNET-seq in HEK293 cells
 ## Date: Sep 27, 2025
 ## Author: Umut Gerlevik
 ############################################################################
@@ -19,7 +19,8 @@ common_prefix=/MellorLab/SNUseqProject/0_commonFiles
 prefix=/MellorLab/SNUseqProject
 
 # Set directory paths
-# SNU from 1_Umut/8.3_spikeNorm_3UTRnormalised_bigwig and 9.1_bPAPminusnoPAP_bigwig
+# SNU-seq from 1_Umut/8.3_spikeNorm_3UTRnormalised_bigwig and 9.1_bPAPminusnoPAP_bigwig
+# sf4sU-seq from GSM5452295
 # TT-seq from 2_TTseq_Phil/1.5_genebodyNormalised_bigwig (GSM5452296)
 ## others from 3_publicData_HEK293T/TTseq_NETseq_PROseq: GSM4730174, GSM4730176 and GSM7990390
 bwFolder1=$prefix/1_Umut/14.1_comparisonsWithOtherMetods
