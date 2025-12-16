@@ -3,7 +3,7 @@
 ############################################################################
 ## Project: SNUseq project
 ## Script purpose: Plot metagenes of SNU-seq (bPAP minus no bPAP negatives 
-##                 removed), PRO-seq, TT-seq, mNET-seq in HEK293 cells
+##                 removed), sf4sU-seq, PRO-seq, TT-seq, mNET-seq in HEK293 cells
 ## Date: Sep 27, 2025
 ## Author: Umut Gerlevik
 ############################################################################
@@ -19,11 +19,12 @@ mkdir -p "$outputDir"
 
 
 ################################################################################################
-### Fig_labelled_rRNAminus_minusNoPAP_negativesRemoved_withTTseqPROseqNETseq_TSStoTES
+### Fig_labelledrRNAminusMinusNoPAPnegativesRemoved_sf4sUseq_TTseq_PROseq_NETseq_TSStoTES
 ################################################################################################
 # List of samples to include and their desired order
 sampleOrderLabelled=(
-  "\"labelled_rRNA_bPAPminusNoPAP\"" "\"TTseq\"" "\"GSM4730176_TTseq\"" "\"GSM4730174_PROseq\"" "\"GSM7990390_mNETseq\""
+  "\"labelled_rRNA_bPAPminusNoPAP\"" "\"GSM5452295_HEK_FII_5\"" "\"GSM5452295_HEK_FII_3\"" 
+  "\"TTseq\"" "\"GSM4730176_TTseq\"" "\"GSM4730174_PROseq\"" "\"GSM7990390_mNETseq\""
 )
 
 # Create a temporary matrix with only the selected samples in the specified order
@@ -36,7 +37,7 @@ computeMatrixOperations subset -m "$inputDir/matrix_fwd_rev_combined_TSS_to_TES_
 
 # Plot the heatmap for labelled samples
 plotHeatmap -m "$subsetMatrixLabelled" \
-  -out "$outputDir/Fig_labelled_rRNAminus_minusNoPAP_negativesRemoved_withTTseqPROseqNETseq_TSStoTES.pdf" \
+  -out "$outputDir/Fig_labelledrRNAminusMinusNoPAPnegativesRemoved_sf4sUseq_TTseq_PROseq_NETseq_TSStoTES.pdf" \
   --colorMap "Blues" --missingDataColor white \
   --yAxisLabel "Average Signal" \
   --legendLocation "none" \
@@ -44,11 +45,12 @@ plotHeatmap -m "$subsetMatrixLabelled" \
   --heatmapWidth 8
 
 ################################################################################################
-### Fig_labelled_minusNoPAP_negativesRemoved_withTTseqPROseqNETseq_TSStoTES
+### Fig_labelledMinusNoPAPnegativesRemoved_sf4sUseq_TTseq_PROseq_NETseq_TSStoTES
 ################################################################################################
 # List of samples to include and their desired order
 sampleOrderLabelled=(
-  "\"labelled_bPAPminusNoPAP\"" "\"TTseq\"" "\"GSM4730176_TTseq\"" "\"GSM4730174_PROseq\"" "\"GSM7990390_mNETseq\""
+  "\"labelled_bPAPminusNoPAP\"" "\"GSM5452295_HEK_FII_5\"" "\"GSM5452295_HEK_FII_3\"" 
+  "\"TTseq\"" "\"GSM4730176_TTseq\"" "\"GSM4730174_PROseq\"" "\"GSM7990390_mNETseq\""
 )
 
 # Create a temporary matrix with only the selected samples in the specified order
@@ -61,7 +63,7 @@ computeMatrixOperations subset -m "$inputDir/matrix_fwd_rev_combined_TSS_to_TES_
 
 # Plot the heatmap for labelled samples
 plotHeatmap -m "$subsetMatrixLabelled" \
-  -out "$outputDir/Fig_labelled_minusNoPAP_negativesRemoved_withTTseqPROseqNETseq_TSStoTES.pdf" \
+  -out "$outputDir/Fig_labelledMinusNoPAPnegativesRemoved_sf4sUseq_TTseq_PROseq_NETseq_TSStoTES.pdf" \
   --colorMap "Blues" --missingDataColor white \
   --yAxisLabel "Average Signal" \
   --legendLocation "none" \
