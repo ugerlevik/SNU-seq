@@ -26,7 +26,8 @@ scale_factors <- setNames(rep(1, length(params$sample_labels)), params$sample_la
 scale_factors["\"GSM4730174_PROseq\""] <- 0.025
 scale_factors["\"GSM4730176_TTseq\""]  <- 0.038
 scale_factors["\"GSM7990390_mNETseq\""] <- 6
-
+scale_factors["\"GSM5452295_HEK_FII_5\""] <- 0.02
+scale_factors["\"GSM5452295_HEK_FII_3\""] <- 0.02
 
 # === READ MATRIX ===
 mat <- fread(matrix_file, skip = 1, header = FALSE)
